@@ -56,14 +56,18 @@ function buldtile(colors,count){
     element.classList.add("tile");
     element.setAttribute("data-color",colors)
     element.setAttribute("revealed-data","false");
-    console.log(count);
    
 
     element.addEventListener("click", () =>{
-        counts ++
-        movenumber = Math.floor(counts / 2);
-        console.log(counts)
-        document.getElementById("moves").innerHTML = movenumber
+        if(element.getAttribute("revealed-data") != "true" && element!=activeTile){
+        counts +=1;
+        console.log(counts);
+        
+        if(counts % 2 === 0   ){
+            // movenumber = Math.floor(counts/2)
+            document.getElementById("moves").innerHTML = counts/2
+        }
+    }
         
         if(
             awaitendOfMove ||
@@ -102,11 +106,9 @@ function buldtile(colors,count){
             activeTile.style.backgroundColor = null
             activeTile = null
             awaitendOfMove = false
-        },1000)
+        },500)
 
-        counts ++;
-        movenumber = Math.floor(counts / 2);
-        document.getElementById("moves").innerHTML = counts
+       
 
     })
 
